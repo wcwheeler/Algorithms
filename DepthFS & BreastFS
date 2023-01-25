@@ -1,0 +1,53 @@
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+
+
+def dfs(root):
+    stack = [root]
+    mp = {}
+    while len(stack) != 0:
+        Node = stack.pop()
+        if Node.val not in mp:
+            print(Node.val)
+            mp[Node.val] = 1
+            if Node.right is not None:
+                stack.append(Node.right)
+            if Node.left is not None:
+                stack.append(Node.left)
+
+def bfs(root):
+    stack = [root]
+    mp = {}
+    while len(stack) != 0:
+        Node = stack.pop()
+        if Node.val not in mp:
+            print(Node.val)
+            mp[Node.val] = 1
+            if Node.left is not None:
+                stack.insert(0, Node.left)
+            if Node.right is not None:
+                stack.insert(0, Node.right)
+
+def dfs_recursion(Node):
+    if Node is None:
+        return
+    print(Node.val)
+    dfs_recursion(Node.left)
+    dfs_recursion(Node.right)
+
+
+root = Node(5)
+
+
+root.left = Node(2)
+root.right = Node(15)
+root.left.left = Node(1)
+root.left.right = Node(4)
+root.right.left = Node(10)
+root.right.right = Node(35)
+dfs_recursion(root)
+dfs(root)
+bfs(root)
